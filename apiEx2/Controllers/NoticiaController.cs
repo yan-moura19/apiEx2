@@ -27,14 +27,14 @@ namespace apiEx2.Controllers
         {
             noticia.Id = noticia.Id;
             noticias.Add(noticia);
-            return Ok();
+            return Ok("Noticia adicionada com sucesso");
         }
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
             if (id == null) return NotFound();
 
-            var noticia = noticias.Where(noticia => noticia.Id.Equals(id.ToString())).FirstOrDefault();
+            var noticia = noticias.Where(noticia => noticia.Id.ToString().Equals(id.ToString())).FirstOrDefault();
             return Ok(noticia);
         }
         [HttpDelete("{id}")]
