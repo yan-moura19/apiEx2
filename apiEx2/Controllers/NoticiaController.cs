@@ -30,18 +30,18 @@ namespace apiEx2.Controllers
             return Ok();
         }
         [HttpGet("{id}")]
-        public IActionResult GetByID(string id)
+        public IActionResult GetByID(int id)
         {
             if (id == null) return NotFound();
 
-            var noticia = noticias.Where(noticia => noticia.Id.Equals(id)).FirstOrDefault();
+            var noticia = noticias.Where(noticia => noticia.Id.Equals(id.ToString())).FirstOrDefault();
             return Ok(noticia);
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
             if (id == null) return NotFound();
-            Noticia? noticia = GetNoticia(id);
+            Noticia? noticia = GetNoticia(id.ToString());
 
             if (noticia == null) return NotFound();
 
@@ -64,7 +64,7 @@ namespace apiEx2.Controllers
         }
         private Noticia? GetNoticia(string id)
         {
-            return noticias.Where(noticia => noticia.Id.ToString().Equals(id)).FirstOrDefault();
+            return noticias.Where(noticia => noticia.Id.ToString().Equals(id.ToString())).FirstOrDefault();
         }
     }
 }
